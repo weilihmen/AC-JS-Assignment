@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AC_Javascipt_Q1~Q2</title>
+	<script>
+		/*Q1*/
+		var state = true;
+		function toggleLight() {
+  	var image = document.getElementById("image");
+  	state = !state;
+  	image.src = state ? "on.jpg" : "off.jpg";
+		}
+
+		function setTimer(){
+			var timeinput= document.getElementById("timeinput");
+			if(isNaN(timeinput.value)){
+				alert("請輸入數字");
+				timeinput.value="";
+			}else{
+				var timeLeft = timeinput.value;
+				var setting = setInterval(countDownTimer, 1000);
+			}
+
+		function countDownTimer() {
+  	timeLeft = timeLeft - 1;
+  		if (timeLeft <= 0) {
+    		document.getElementById("image").src = "off.jpg";
+    		clearInterval(setting);
+  		}
+  	document.getElementById("timer").innerHTML = timeLeft;
+		}
+			
+		}
+		/*Q2*/
+
+	function validate() {
+		document.getElementById("result").innerHTML = "";
+	  var code = document.getElementById("nric").value;
+	  var nricL = code.charAt(0);
+	  var nricN = code.slice(1);
+	  console.log(nricN);
+	  if (code == "") {
+	    alert("內容是空的，發出警告!");
+	  } else if (code.length != 10) {
+	    alert("內容的長度不正確，發出警告!");
+	  } else if (!isNaN(nricL)) {
+	    alert("首位不應為數字，發出警告!");
+	  } else if (isNaN(nricN)) {
+	    alert("後九碼應為數字，發出警告!");
+	  } else if ( nricN.charAt(0) == 1) {
+	  	document.getElementById("result").innerHTML = "通過驗證，你是男生";
+	  } else if ( nricN.charAt(0) == 2) {
+	  	document.getElementById("result").innerHTML = "通過驗證，你是女生";
+	  }
+	  else { 
+	    alert("身分證字號格式錯誤，發出警告!");
+	    document.getElementById("result").innerHTML = "";
+	  }
+	}
+
+
+	</script>
+	<style>
+		.container{
+			width: 80%;
+			min-width: 500px;
+			border: solid;
+			min-height: 500px;
+			padding: 20px 20px;
+		}
+		nav{
+			padding-top: 20px;
+			padding-bottom: 20px;
+			padding-left: 20px;
+		}
+		nav button{
+			margin-right: 20px;
+		}
+		img {
+			width: 300px;
+		}
+	</style>
+</head>
+<body>
+	<nav><a href="index.html"><button>第一題～第二題</button></a><a href="02.html"><button>第三題～第五題</button></a></nav>
+	<div class="container">
+		<p>Q1: 請在完成「實作：電燈開關」後，撰寫一個新的功能：讓使用者可以輸入「數字」，並把這個「數字」設定為倒數計時的時間，倒數計時結束的功能維持一樣：時間到後換上關燈圖片。</p>
+		<p>提示：你會有一個輸入欄位<br>
+你需要判斷輸入的是否是數字<br>
+你需要一個轉換字串成數字的功能<br>
+你需要一個驅動設定倒數計時時間的按鈕</p>
+		<div class="element">
+			<img id="image" src="on.jpg"><br>
+			<div>設定時間～
+				<input type="text" id="timeinput">
+				<button class="button" onclick="setTimer();">開始計時</button>  
+				<br>
+			</div>
+			<div>
+				<button class="button" onclick="toggleLight();">ON<br>-<br>OFF</button>
+				Timer:
+				<div class="div" id="timer" style="display: inline-block;">5</div>
+			<div>
+		</div>
+		<p>Q2:請在完成「實作：表單驗證」後，撰寫一個新的功能：透過身分證字號判斷性別，並在 result 的內容寫上「某男／女通過驗證」。</p>
+		<p>提示：性別為身分證字號第一個數字，男的編號為 1，女的編號為 2。<br>
+		如身分證字號為「A123456789」，第一個數字為 1，即判斷該身分證字號為男。</p>
+		<div class="element">
+			<input type="text"  id="nric">
+			<input type="button" value="驗證" onclick="validate()">
+			<p id="result"></p>
+		</div>
+		<div style="width: 100px; height: 100px;"></div>
+	</div>
+</body>
+</html>

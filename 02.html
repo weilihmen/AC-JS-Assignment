@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AC_Javascipt_Q3~Q5</title>
+	<script>
+		/*Q3*/
+		function createToDo() {
+			var todo = document.createElement("div");  // To-Do div
+			todo.className="todolist"
+			var span = document.createElement("span");  // To-Do Span
+			var replaceButton = document.createElement("button");  // To-Do replace button
+			var removeButton = document.createElement("button"); // To-Do remove button
+			var input=document.getElementById("input")
+			var todocontent;
+
+		//span標籤
+		if (input.value == "") {
+    	alert("你並沒有輸入任何文字");
+		  return;
+  		}
+  	else{
+  		todocontent = input.value;
+  		input.value = ""; 
+  	}
+		span.innerHTML = todocontent;
+		todo.appendChild(span);
+
+		//交換的按鍵
+		replaceButton.textContent = "R";
+  	todo.appendChild(replaceButton);
+		replaceButton.onclick = function() {
+	    	if( input.value == "" ) {
+		      alert("你並沒有輸入任何文字");
+		      return;
+    		}
+	    	this.parentNode.firstChild.innerHTML = input.value;
+	    	document.getElementById("input").value = ""; 
+	    }
+
+	  //刪除的按鍵
+	  removeButton.textContent = "V";
+    todo.appendChild(removeButton);
+	  removeButton.onclick = function() {
+	  	var answer = confirm("OK?");
+	  	if (answer==true){
+        this.parentNode.parentNode.removeChild(this.parentNode);
+	  	} 
+      }
+  
+  	document.getElementById("todos").appendChild(todo); //把建好的東西都加進去
+  }
+
+  /*Q4*/
+  function createToDo2() {
+			var todo = document.createElement("div");  // To-Do div
+			todo.className="todolist"
+			var span = document.createElement("span");  // To-Do Span
+			var replaceButton = document.createElement("button");  // To-Do replace button
+			var removeButton = document.createElement("button"); // To-Do remove button
+			var input=document.getElementById("input2")
+			var todocontent;
+
+		//span標籤
+		if (input.value == "") {
+    	alert("你並沒有輸入任何文字");
+		  return;
+  		}
+  	else{
+  		todocontent = input.value;
+  		input.value = ""; 
+  	}
+		span.innerHTML = todocontent;
+		todo.appendChild(span);
+
+		//交換的按鍵
+		replaceButton.textContent = "R";
+  	todo.appendChild(replaceButton);
+		replaceButton.onclick = function() {
+	    	if( input.value == "" ) {
+		      alert("你並沒有輸入任何文字");
+		      return;
+    		}
+	    	this.parentNode.firstChild.innerHTML = input.value;
+	    	document.getElementById("input2").value = ""; 
+	    }
+
+	  //刪除的按鍵
+	  removeButton.textContent = "V";
+    todo.appendChild(removeButton);
+	  removeButton.onclick = function() {
+	  	var answer = confirm("OK?");
+	  	if (answer==true){
+	  		this.parentNode.childNodes[0].style.color="red";
+        this.parentNode.removeChild(this.parentNode.childNodes[1]);
+        this.parentNode.removeChild(this.parentNode.lastChild);
+	  	} 
+      }
+  
+  	document.getElementById("todos2").appendChild(todo); //把建好的東西都加進去
+  }
+
+  /*Q5*/
+  function createToDo3() {
+			var todo = document.createElement("div");  // To-Do div
+			todo.className="todolist"
+			var span = document.createElement("span");  // To-Do Span
+			var replaceButton = document.createElement("button");  // To-Do replace button
+			var removeButton = document.createElement("button"); // To-Do remove button
+			var input=document.getElementById("input3");
+			var todocontent;
+
+		//span標籤
+		if (input.value == "") {
+    	alert("你並沒有輸入任何文字");
+		  return;
+  		}
+  	else{
+  		todocontent = input.value;
+  		input.value = ""; 
+  	}
+
+  	var form1=document.getElementById("form1");
+  	if (form1.status.value=="urgen"){
+  		span.style.color="red";
+  	}else{
+  		span.style.color="green";
+  	}
+
+
+		span.innerHTML = todocontent;
+		todo.appendChild(span);
+
+		//交換的按鍵
+		replaceButton.textContent = "R";
+  	todo.appendChild(replaceButton);
+		replaceButton.onclick = function() {
+	    	if( input.value == "" ) {
+		      alert("你並沒有輸入任何文字");
+		      return;
+    		}
+	    	this.parentNode.firstChild.innerHTML = input.value;
+	    	document.getElementById("input3").value = ""; 
+	    }
+
+	  //刪除的按鍵
+	  removeButton.textContent = "V";
+    todo.appendChild(removeButton);
+	  removeButton.onclick = function() {
+	  	var answer = confirm("OK?");
+	  	if (answer==true){
+	  		tthis.parentNode.parentNode.removeChild(this.parentNode);
+	  	} 
+      }
+  
+  	document.getElementById("todos3").appendChild(todo); //把建好的東西都加進去
+  }
+
+
+	</script>
+	<style>
+		.container{
+			width: 80%;
+			min-width: 500px;
+			border: solid;
+			min-height: 500px;
+			padding: 20px 20px;
+		}
+		nav{
+			padding-top: 20px;
+			padding-bottom: 20px;
+			padding-left: 20px;
+		}
+		nav button{
+			margin-right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<nav><a href="index.html"><button>第一題～第二題</button><a href="02.html"><button>第三題～第五題</button></a></nav>
+	<div class="container" id="container">
+		<p>Q3:請在完成「實作：To-Do List」後，撰寫一個新的功能：每次點擊「V」後，刪除前，請發出一個確認訊息「是否確定完成？」；若確認為 false，不刪除該 To-Do，若為 true，則刪除掉該 To-Do。</p>
+		<input type="text" id="input">
+		<button onclick="createToDo()"> 創建todo </button>
+		<div id="todos">
+		</div>
+		<br>
+		<p>Q4:請在完成 Question 3 後，才來做這一題。撰寫一個新的功能：每次點擊「V」後，依然會發出確認訊息，但不會刪除掉 To-Do，而是更改其字體的顏色，並且把「R」和「V」按鈕移除掉。</p>
+		<input type="text" id="input2">
+		<button onclick="createToDo2()"> 創建todo </button>
+		<div id="todos2">
+		</div>
+		<br>
+		<p>Q5:請在完成 Question 4 後，才來做這一題。<br>
+			請新增一個 form 標籤，然後在form 裡放入兩個 input radio 標籤<br>
+			兩個 input radio 標籤會有一個是自動被點亮的，如下圖所示：<br>
+			在點擊「+」按鈕時，除了會新增 To-Do，也會根據緊急與否的選項去把文字變色；若是緊急，文字是紅色，若是不緊急，文字則是深綠色。
+		</p>
+		<input type="text" id="input3" style="display: inline-block;">
+		<form id="form1" style="display: inline-block;">
+			<input type="radio" name="status" value="unurgen" checked>不緊急
+			<input type="radio" name="status" value="urgen">緊急
+		</form>
+		<button onclick="createToDo3()" style="display: inline-block;"> 創建todo </button>
+		<div id="todos3">
+		</div>
+	<div style="width: 100px; height: 100px;"></div>
+	</div>
+</body>
+</html>
